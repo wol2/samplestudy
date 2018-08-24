@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- #7. mapper 기본설정 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #8. 루트엘리먼트 & 네임스페이스 설정(프로젝트 전체 내에서 고유해야 한다.) --> 
+<mapper namespace="testdb">
+
+    <insert id="mybatisTest1">
+		insert into spring_mybatistest(no, name, email, tel, addr, writeday)
+		values(seq_mybatistest.nextval, #{name}, 'ywj@naver.com', '010-1234-5678', '경기도 수원시', default)   	
+    </insert>
+    
+    
+    <!-- VO(DTO)로 전달받아서 DB에 insert 하는 것
+      ==> 매개변수(parameterType)는 반드시!!! 풀네임(패키지명)으로 기재해야 한다.!!!
+     -->
+    <insert id="formtest1End" parameterType="com.test.spring.model.MybatisTestVO">
+    	insert into spring_mybatistest(no, name, email, tel, addr, writeday)
+		values(seq_mybatistest.nextval, #{name}, #{email}, #{tel}, #{addr}, default)
+    </insert>
+    
+    
+    <!-- HashMap으로 전달받아서 DB에 insert 하는 것
+      ==> 매개변수(parameterType)는 반드시!!! 풀네임(패키지명)으로 기재해야 한다.!!!
+          parameterType 이 HashMap 이라면 #{키값} 이다.
+     -->
+    <insert id="formtest3End" parameterType="java.util.HashMap">
+    	insert into spring_member(num, irum, mobile, address, writeday)
+		values(seq_spring_member.nextval, #{irum}, #{mobile}, #{address}, default)
+    </insert>
+    
+    
+    <select id="selectTest1End" parameterType="String" resultType="String">
+    	select name
+    	from spring_mybatistest
+    	where no = #{no}
+    </select>
+    
+    
+    <select id="selectTest2End" parameterType="String" resultType="com.test.spring.model.MybatisTestVO">
+    	select no, name, email, tel, addr, 
+    	       to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday
+    	from spring_mybatistest
+    	where no = #{no}
+    </select>
+    
+    
+    <!-- 데이터 조회하기에서 여러개 행을 추출하는 경우
+         List 타입으로 보여준다 하더라도 resultType 은 
+         List 타입으로 해주면 오류가 발생한다.
+          리턴 타입이 List 타입이더라도 resultType 은
+         List 타입에 들어가는 객체타입(지금은 MybatisTestVO)으로 해주어야 한다. -->
+    <select id="selectTest3End" resultType="com.test.spring.model.MybatisTestVO">
+    	select no, name, email, tel, addr, 
+    	       to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday
+    	from spring_mybatistest
+    	order by no desc
+    </select>
+    
+    
+    <resultMap type="java.util.HashMap" id="spring_member_resultmap">
+    	<result property="NUM" 		column="num" 		javaType="String" />
+	    <result property="IRUM" 	column="irum" 		javaType="String" />
+	    <result property="MOBILE" 	column="mobile" 	javaType="String" />
+	    <result property="ADDRESS" 	column="address" 	javaType="String" />
+	    <result property="HOBBY" 	column="hobby" 		javaType="String" />
+	    <result property="WRITEDAY" column="writeday" 	javaType="String" />
+    </resultMap>
+    
+    <select id="selectTest4End" resultMap="spring_member_resultmap">
+        select num, irum, mobile, address, hobby, 
+               to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday 
+        from spring_member
+        order by num desc 
+    </select>
+    
+    
+    <!-- 
+    	!!!! 암기 !!!!!
+    	HashMap 타입으로 매개변수를 받아온 것을 꺼내어 사용할때
+    	1. 데이터로 사용할때는 #{key값}
+    	2. 식별자(테이블명, 컬럼명)로 사용할때는 ${key값}
+    	3. myBatis 에서 제공하는 if 엘리먼트 안에서 사용할때는 그냥 그대로 <if test="key값"> 이렇게 사용한다. 
+   	-->
+    <select id="selectTest5End" parameterType="java.util.HashMap" resultType="com.test.spring.model.MybatisTestVO">
+    	select no, name, email, tel, addr, 
+    	       to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday
+    	from spring_mybatistest
+    	<if test="COLNAME != null and SEARCHWORD != null">
+    	where ${COLNAME} like '%' || #{SEARCHWORD} || '%'	
+    	</if>
+    	order by no desc
+    </select>
+    
+    
+    <select id="selectTest6End" parameterType="java.util.HashMap" resultType="com.test.spring.model.MybatisTestVO">
+    	select no, name, email, tel, addr, 
+    	       to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday
+    	from spring_mybatistest
+    	where 1=1
+    	<if test="COLNAME != null and SEARCHWORD != null">
+    	and ${COLNAME} like '%' || #{SEARCHWORD} || '%'	
+    	</if>
+    	<if test="DAYDIFFERENCE == 0">
+    	and to_date(TO_CHAR (sysdate), 'yyyy-mm-dd hh:mi:ss') - to_date(TO_CHAR (writeday), 'yyyy-mm-dd hh:mi:ss') = 0 	
+    	</if>
+    	<if test="DAYDIFFERENCE > 0">
+    	and to_date(TO_CHAR (sysdate), 'yyyy-mm-dd hh:mi:ss') - to_date(TO_CHAR (writeday), 'yyyy-mm-dd hh:mi:ss') <![CDATA[<=]]> #{DAYDIFFERENCE}  	
+    	</if>
+    	order by no desc
+    </select>
+    
+    
+    <insert id="formtestquizEnd" parameterType="java.util.HashMap">
+    	insert into spring_quizmember(no, name, email, tel, addr, schoolgrade, writeday)
+    	values(seq_quizmember.nextval, #{NAME}, #{EMAIL}, #{TEL}, #{ADDR}, to_number(#{SCHOOLGRADE}), default)
+    </insert>
+    
+    
+    <resultMap type="java.util.HashMap" id="selectQuizEnd_resultmap">
+    	<result property="NO" 			column="no" 			javaType="String" />
+	    <result property="NAME" 		column="name" 			javaType="String" />
+	    <result property="EMAIL" 		column="email" 			javaType="String" />
+	    <result property="TEL" 			column="tel" 			javaType="String" />
+	    <result property="ADDR" 		column="addr" 			javaType="String" />
+	    <result property="SCHOOLGRADE" 	column="schoolgrade" 	javaType="String" />
+	    <result property="WRITEDAY" 	column="writeday" 		javaType="String" />
+    </resultMap>
+    
+    <select id="selectQuizEnd" resultMap="selectQuizEnd_resultmap" parameterType="java.util.HashMap">
+        select no, name, email, tel, addr
+             , decode(schoolgrade, 1, '대졸이상'
+                                 , 2, '초대졸'
+                                 , 3, '고졸') as schoolgrade  
+             , to_char(to_date(writeday),'yyyy-mm-dd hh:mi:ss') as writeday 
+        from spring_quizmember
+        where 1=1
+    	<if test="COLNAME != null and SEARCHWORD != null">
+    	and ${COLNAME} like '%' || #{SEARCHWORD} || '%'	
+    	</if>
+    	<if test="DAYDIFFERENCE == 0">	
+    	AND to_date(TO_CHAR (sysdate), 'yyyy-mm-dd hh:mi:ss') - to_date(TO_CHAR (writeday), 'yyyy-mm-dd hh:mi:ss') = 0
+    	</if>
+    	<if test="DAYDIFFERENCE > 0">
+    	AND to_date(TO_CHAR (sysdate), 'yyyy-mm-dd hh:mi:ss') - to_date(TO_CHAR (writeday), 'yyyy-mm-dd hh:mi:ss') <![CDATA[<=]]> #{DAYDIFFERENCE}  	
+    	</if>
+        order by no desc 
+    </select>
+    
+    
+    
+
+
+	<resultMap type="java.util.HashMap" id="employeeDeptResultMap">
+	 		<result property="DEPARTMENT_ID" 	column="department_id" 		javaType="String" />
+	 		<result property="DEPARTMENT_NAME" 	column="department_name" 	javaType="String" />
+	 		<result property="EMPLOYEE_ID" 		column="employee_id" 		javaType="String" />
+	 		<result property="ENAME" 			column="ename" 				javaType="String" />
+	 		<result property="JUBUN" 			column="jubun" 				javaType="String" />
+	 		<result property="GENDER" 			column="gender" 			javaType="String" />
+	 		<result property="AGE" 				column="age" 				javaType="String" />
+	 		<result property="YEARPAY" 			column="yearpay" 			javaType="String" />
+	</resultMap>
+
+	<select id="searchforeachEnd" resultMap="employeeDeptResultMap" parameterType="java.util.HashMap">
+ 	
+ 		select *
+        from view_employeeDept
+        where 1=1
+        <if test="department_id_Arr != null">
+        	and department_id IN
+        	<foreach collection="department_id_Arr" item="item" index="i" open="(" close=")" separator="," >   
+        		${department_id_Arr[i]}
+        	</foreach>
+        </if>
+        
+        <if test='gender != null and !gender.equals("전체")'>
+        	and gender = #{gender}
+        </if>
+	 	<if test='ageline != null and ageline >= 0'>
+        	and trunc(age, -1) = #{ageline}
+        </if>
+ 	</select>    
+    
+
+</mapper>
+
+
+
+
+
