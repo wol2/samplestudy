@@ -1,3 +1,2 @@
 # springsample
-sampletest
-this is a springsample for studying created by wol2
+This is a spring sample created by wol2
