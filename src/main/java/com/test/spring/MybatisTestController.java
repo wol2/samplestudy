@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.test.spring.model.MybatisTestVO;
 import com.test.spring.service.MybatisTestService;
@@ -37,6 +38,14 @@ public class MybatisTestController {
 	@Autowired
 	private MybatisTestService service;
 	
+	@RequestMapping(value="/webtest.action", method={RequestMethod.GET})
+	public ModelAndView webtest() {
+		
+		ModelAndView mav = new ModelAndView("webtest");
+		System.out.println("webtest 입니다.");
+		
+		return mav;
+	}	
 	
 	@RequestMapping(value="/mybatis/test1.action", method={RequestMethod.GET})
 	public String mybatisTest1() {
