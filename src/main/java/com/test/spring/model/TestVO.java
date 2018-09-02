@@ -1,6 +1,6 @@
 package com.test.spring.model;
 
-public class MybatisTestVO {
+public class TestVO {
 
 	private int no;
 	private String name;
@@ -9,9 +9,9 @@ public class MybatisTestVO {
 	private String addr;
 	private String writeday;
 	
-	public MybatisTestVO() { }
+	public TestVO() { }
 	
-	public MybatisTestVO(int no, String name, String email, String tel, String addr, String writeday) {
+	public TestVO(int no, String name, String email, String tel, String addr, String writeday) {
 		this.no = no;
 		this.name = name;
 		this.email = email;

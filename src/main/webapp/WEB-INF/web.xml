@@ -31,7 +31,7 @@
 		<!-- #3. appServlet 이 MyMVC에서 사용했던 FrontController 서블릿에 해당하는 스프링의 서블릿이다.
 		         URL 패턴에서 *.action 인 것으로 요청을 해오면
 		         appServlet 서블릿이 받아서 처리를 해준다. -->
-		<url-pattern>*.action</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 
@@ -49,8 +49,5 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*</url-pattern>
 	</filter-mapping>
-
-
-
 
 </web-app>

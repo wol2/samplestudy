@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Pinball Website Template | Home :: w3layouts</title>
+		<title>테스트홈페이지</title>
 		<link href="<%=request.getContextPath()%>/resources/css/style.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="images/fav-icon.png" />
@@ -19,10 +12,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 		<!----//webfonts---->
 		<!-- Global CSS for the page and tiles -->
-  		<link rel="stylesheet" href="css/main.css">
+  		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
   		<!-- //Global CSS for the page and tiles -->
 		<!---start-click-drop-down-menu----->
-		<script src="js/jquery.min.js"></script>
+		<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
         <!----start-dropdown--->
          <script type="text/javascript">
 			var $ = jQuery.noConflict();
@@ -54,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" title="pinbal" /></a>
+					<a href="index.html"><img src="<%=request.getContextPath()%>/resources/images/logo.png" title="pinbal" /></a>
 				</div>
 				<div class="nav-icon">
 					 <a href="#" class="right_bt" id="activator"><span> </span> </a>
@@ -87,7 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="userinfo">
 					<div class="user">
 						<ul>
-							<li><a href="#"><img src="images/user-pic.png" title="user-name" /><span>Ipsum</span></a></li>
+							<li><a href="#"><img src="<%=request.getContextPath()%>/resources/images/user-pic.png" title="user-name" /><span>Ipsum</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -102,7 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			      <ul id="tiles">
 			        <!-- These are our grid blocks -->
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img1.jpg" width="282" height="118">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -121,7 +114,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img2.jpg" width="282" height="344">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img2.jpg" width="282" height="344">
 						<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -140,7 +133,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 					</li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img3.jpg" width="282" height="210">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img3.jpg" width="282" height="210">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -159,7 +152,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img4.jpg" width="282" height="385">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img4.jpg" width="282" height="385">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -179,7 +172,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        </li>
 			        <!----//--->
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img4.jpg" width="282" height="385">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img4.jpg" width="282" height="385">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -198,7 +191,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img3.jpg" width="282" height="210">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img3.jpg" width="282" height="210">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -217,7 +210,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img2.jpg" width="282" height="344">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img2.jpg" width="282" height="344">
 						<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -236,7 +229,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 					</li>
 					  <li onclick="location.href='single-page.html';">
-			        	<img src="images/img1.jpg" width="282" height="118">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -256,7 +249,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        </li>
 			        <!----//--->
 			         <li onclick="location.href='single-page.html';">
-			        	<img src="images/img1.jpg" width="282" height="118">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img1.jpg" width="282" height="118">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -275,7 +268,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img2.jpg" width="282" height="344">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img2.jpg" width="282" height="344">
 						<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -294,7 +287,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 					</li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img3.jpg" width="282" height="210">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img3.jpg" width="282" height="210">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -313,7 +306,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        	</div>
 			        </li>
 			        <li onclick="location.href='single-page.html';">
-			        	<img src="images/img4.jpg" width="282" height="385">
+			        	<img src="<%=request.getContextPath()%>/resources/images/img4.jpg" width="282" height="385">
 			        	<div class="post-info">
 			        		<div class="post-basic-info">
 				        		<h3><a href="#">Animation films</a></h3>
@@ -338,8 +331,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<!---//End-content---->
 		<!----wookmark-scripts---->
-		  <script src="js/jquery.imagesloaded.js"></script>
-		  <script src="js/jquery.wookmark.js"></script>
+		  <script src="<%=request.getContextPath()%>/resources/js/jquery.imagesloaded.js"></script>
+		  <script src="<%=request.getContextPath()%>/resources/js/jquery.wookmark.js"></script>
 		  <script type="text/javascript">
 		    (function ($){
 		      var $tiles = $('#tiles'),
@@ -394,13 +387,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    })(jQuery);
 		  </script>
 		<!----//wookmark-scripts---->
-		<!----start-footer--->
-		<div class="footer">
-			<p>Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-		</div>
-		<!----//End-footer--->
 		<!---//End-wrap---->
 	</body>
 </html>
+
 
 
