@@ -34,7 +34,7 @@ public class TestController {
 	@RequestMapping(value="/main", method={RequestMethod.GET})
 	public ModelAndView webtest() {
 		ModelAndView mav = new ModelAndView("main");
-		System.out.println("webtest 입니다.");
+		System.out.println("main 테스트 입니다.");
 		
 		return mav;
 	}	
