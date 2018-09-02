@@ -33,7 +33,7 @@ public class TestController {
 	
 	@RequestMapping(value="/main", method={RequestMethod.GET})
 	public ModelAndView webtest() {
-		ModelAndView mav = new ModelAndView("webtest");
+		ModelAndView mav = new ModelAndView("main");
 		System.out.println("webtest 입니다.");
 		
 		return mav;
